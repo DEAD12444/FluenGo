@@ -3,131 +3,937 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cordoba English Learning Center</title>
+  <title>FluenGO | Master English in 45 Days</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Poppins', sans-serif; }
+    :root {
+      --primary-color: #2563eb;    /* Blue-600 */
+      --secondary-color: #7c3aed;  /* Violet-600 */
+      --accent-color: #06b6d4;     /* Cyan-500 */
+      --dark-color: #0f172a;       /* Slate-900 */
+      --light-color: #f8fafc;      /* Slate-50 */
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      scroll-behavior: smooth;
+    }
+    
+    .bg-primary { background-color: var(--primary-color); }
+    .bg-secondary { background-color: var(--secondary-color); }
+    .bg-accent { background-color: var(--accent-color); }
+    .bg-dark { background-color: var(--dark-color); }
+    .bg-light { background-color: var(--light-color); }
+    
+    .text-primary { color: var(--primary-color); }
+    .text-secondary { color: var(--secondary-color); }
+    .text-accent { color: var(--accent-color); }
+    .text-dark { color: var(--dark-color); }
+    .text-light { color: var(--light-color); }
+    
+    .border-primary { border-color: var(--primary-color); }
+    .border-secondary { border-color: var(--secondary-color); }
+    
+    .gradient-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+    
+    .gradient-secondary {
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+    
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #333;
+    }
+    
+    .certificate {
+      border: 20px solid var(--primary-color);
+      padding: 40px;
+      background: linear-gradient(45deg, #f8fafc, #e0e7ff);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-container {
+      background-color: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+    }
+    
+    .progress-bar {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 100%;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.15);
+    }
+    
+    .course-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .badge-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .badge-secondary {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+    
+    .badge-accent {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    
+    /* Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary-color);
+    }
+    
+    .timeline-item:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 25px;
+      width: 2px;
+      height: calc(100% + 15px);
+      background: #e5e7eb;
+    }
+    
+    .timeline-item:last-child:after {
+      display: none;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-gray-800">
-
+<body class="bg-light text-dark">
   <!-- Header -->
-  <header class="bg-blue-900 text-white">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center">
-      <div class="flex flex-col md:flex-row items-center gap-6 mb-6 md:mb-0">
-        <!-- Large logo placed prominently -->
-        <div class="flex items-center justify-center">
-          <img src="logo.png" 
-               alt="Cordoba English Learning Center Logo" 
-               class="h-28 w-auto" />
-        </div>
-        <div class="text-center md:text-left">
-          <h1 class="text-4xl md:text-5xl font-bold">Cordoba English Learning Center</h1>
-          <p class="text-lg mt-2 text-blue-200">Today's Learners, Tomorrow's Speakers</p>
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" 
+             alt="FluenGO Logo" 
+             class="h-10 w-auto" />
+        <div>
+          <h1 class="text-2xl font-bold text-dark">FLUENGO</h1>
+          <p class="text-xs text-gray-500">Learn Today. Speak Tomorrow.</p>
         </div>
       </div>
-      <nav class="space-x-6 hidden md:block">
-        <a href="#about" class="hover:text-blue-300">About</a>
-        <a href="#courses" class="hover:text-blue-300">Courses</a>
-        <a href="#why" class="hover:text-blue-300">Why Us</a>
-        <a href="#contact" class="hover:text-blue-300">Contact</a>
+      
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="#home" class="font-medium hover:text-primary transition">Home</a>
+        <a href="#course" class="font-medium hover:text-primary transition">Course</a>
+        <a href="#modules" class="font-medium hover:text-primary transition">Modules</a>
+        <a href="#outcomes" class="font-medium hover:text-primary transition">Outcomes</a>
+        <a href="#enroll" class="font-medium hover:text-primary transition">Enroll</a>
+        <a href="#contact" class="font-medium hover:text-primary transition">Contact</a>
       </nav>
+      
+      <button onclick="openEnrollmentModal()" class="bg-primary text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition">
+        <i class="fas fa-rocket mr-2"></i>Enroll Now
+      </button>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Master English with Confidence</h2>
-        <p class="text-lg md:text-xl mb-8">Build confidence, fluency, and real-world English skills with our structured multi-month English learning program.</p>
-        <a href="#contact" class="inline-block bg-white text-blue-900 font-semibold px-8 py-3 rounded-xl shadow hover:bg-blue-100 transition">Enroll Now</a>
+  <section id="home" class="gradient-primary text-white py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center bg-white/20 px-4 py-2 rounded-full mb-6">
+            <span class="text-sm font-medium">🚀 New Launch</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Master English Fluency in
+            <span class="text-accent">45 Days</span>
+          </h1>
+          <p class="text-xl opacity-90 mb-8">
+            Our comprehensive 45-day program transforms beginners into confident English speakers. Structured learning, daily practice, and expert guidance.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button onclick="openEnrollmentModal()" class="bg-white text-primary font-semibold px-8 py-3.5 rounded-xl hover:bg-gray-100 transition hover-lift">
+              <i class="fas fa-play-circle mr-2"></i>Start Learning Today
+            </button>
+            <a href="#course" class="border-2 border-white text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition hover-lift text-center">
+              <i class="fas fa-info-circle mr-2"></i>Learn More
+            </a>
+          </div>
+          
+          <div class="mt-12 flex items-center space-x-8">
+            <div class="text-center">
+              <div class="text-3xl font-bold">45</div>
+              <div class="text-sm opacity-80">Days Program</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">4</div>
+              <div class="text-sm opacity-80">Core Modules</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">100%</div>
+              <div class="text-sm opacity-80">Practical Focus</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <h3 class="text-2xl font-bold mb-6 text-center">Course Highlights</h3>
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-white/5 rounded-xl">
+                <div class="bg-accent p-3 rounded-lg mr-4">
+                  <i class="fas fa-calendar-check text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">45-Day Structured Plan</h4>
+                  <p class="text-sm opacity-90">Daily lessons and practice</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center p-4 bg-white/5 rounded-xl">
+                <div class="bg-primary p-3 rounded-lg mr-4">
+                  <i class="fas fa-certificate text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Completion Certificate</h4>
+                  <p class="text-sm opacity-90">Verified digital certificate</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center p-4 bg-white/5 rounded-xl">
+                <div class="bg-secondary p-3 rounded-lg mr-4">
+                  <i class="fas fa-comments text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Live Practice Sessions</h4>
+                  <p class="text-sm opacity-90">Weekly speaking practice</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center p-4 bg-white/5 rounded-xl">
+                <div class="bg-accent p-3 rounded-lg mr-4">
+                  <i class="fas fa-user-check text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Personal Feedback</h4>
+                  <p class="text-sm opacity-90">Expert correction and tips</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex justify-center">
-        <div class="bg-blue-800 p-8 rounded-2xl shadow-lg max-w-md">
-          <h3 class="text-2xl font-bold mb-4 text-center">Why Learn English?</h3>
-          <ul class="space-y-3 text-lg">
-            <li class="flex items-center gap-2">✓ Global communication</li>
-            <li class="flex items-center gap-2">✓ Career opportunities</li>
-            <li class="flex items-center gap-2">✓ Academic advancement</li>
-            <li class="flex items-center gap-2">✓ Cultural understanding</li>
+    </div>
+  </section>
+
+  <!-- Course Overview -->
+  <section id="course" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <span class="badge badge-primary mb-4">OUR FLAGSHIP PROGRAM</span>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">The Complete English Fluency Course</h2>
+      <p class="text-gray-600 text-lg mb-12 max-w-3xl mx-auto">
+        A carefully designed 45-day journey from basic English to confident conversation. Perfect for beginners and intermediate learners.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6">
+          <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-bullseye text-primary text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Clear Objectives</h3>
+          <p class="text-gray-600">Daily goals and weekly milestones</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-chart-line text-secondary text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Progress Tracking</h3>
+          <p class="text-gray-600">Monitor improvement with analytics</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-hands-helping text-accent text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Community Support</h3>
+          <p class="text-gray-600">Learn with fellow students</p>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-6">Course Timeline</h3>
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="text-center p-4">
+            <div class="text-3xl font-bold text-primary mb-2">Weeks 1-2</div>
+            <p class="font-medium">Foundation Building</p>
+          </div>
+          <div class="text-center p-4">
+            <div class="text-3xl font-bold text-secondary mb-2">Weeks 3-4</div>
+            <p class="font-medium">Grammar Mastery</p>
+          </div>
+          <div class="text-center p-4">
+            <div class="text-3xl font-bold text-accent mb-2">Weeks 5-6</div>
+            <p class="font-medium">Speaking Practice</p>
+          </div>
+          <div class="text-center p-4">
+            <div class="text-3xl font-bold text-primary mb-2">Week 7</div>
+            <p class="font-medium">Final Assessment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules Section -->
+  <section id="modules" class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Course Modules</h2>
+        <p class="text-gray-600 text-lg">Four comprehensive modules designed for progressive learning</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Module 1 -->
+        <div class="course-card bg-white">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <span class="badge badge-primary mr-3">Module 1</span>
+              <span class="text-sm text-gray-500">Days 1-15</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Foundation Building</h3>
+            <p class="text-gray-600 mb-6">Essential vocabulary, basic grammar, and simple conversations</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> 500+ essential words</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Basic sentence structure</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Daily conversation practice</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Pronunciation basics</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-primary">15 Lessons</span>
+              <button onclick="openEnrollmentModal()" class="text-primary font-semibold hover:text-blue-700">
+                Start Module <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Module 2 -->
+        <div class="course-card bg-white">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <span class="badge badge-secondary mr-3">Module 2</span>
+              <span class="text-sm text-gray-500">Days 16-25</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Grammar Mastery</h3>
+            <p class="text-gray-600 mb-6">Tenses, sentence construction, and complex grammar patterns</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> All English tenses</li>
+              <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> Question formation</li>
+              <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> Complex sentences</li>
+              <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> Common grammar mistakes</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-secondary">10 Lessons</span>
+              <span class="text-gray-500">Unlocks after Module 1</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Module 3 -->
+        <div class="course-card bg-white">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <span class="badge badge-accent mr-3">Module 3</span>
+              <span class="text-sm text-gray-500">Days 26-35</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Speaking & Listening</h3>
+            <p class="text-gray-600 mb-6">Real conversations, listening comprehension, and fluency development</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Natural conversation flow</li>
+              <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Listening comprehension</li>
+              <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Accent reduction</li>
+              <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Live practice sessions</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-accent">10 Lessons</span>
+              <span class="text-gray-500">Unlocks after Module 2</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Module 4 -->
+        <div class="course-card bg-white">
+          <div class="p-8">
+            <div class="flex items-center mb-6">
+              <span class="badge badge-primary mr-3">Module 4</span>
+              <span class="text-sm text-gray-500">Days 36-45</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Advanced Communication</h3>
+            <p class="text-gray-600 mb-6">Presentation skills, debates, and professional communication</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Public speaking</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Debate techniques</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Professional vocabulary</li>
+              <li class="flex items-center"><i class="fas fa-check text-primary mr-3"></i> Final assessment</li>
+            </ul>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-primary">10 Lessons</span>
+              <span class="text-gray-500">Unlocks after Module 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Outcomes -->
+  <section id="outcomes" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">What You'll Achieve</h2>
+        <p class="text-gray-600 text-lg">By the end of this 45-day course</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <div class="space-y-8">
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-comment-dots text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Confident Conversations</h3>
+                <p class="text-gray-600">Speak English fluently in everyday situations without hesitation.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-secondary/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-book text-secondary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Grammar Mastery</h3>
+                <p class="text-gray-600">Understand and use all major English grammar rules correctly.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-accent/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-headphones text-accent text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Improved Listening</h3>
+                <p class="text-gray-600">Understand native speakers at normal conversation speed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="space-y-8">
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-file-certificate text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Verified Certificate</h3>
+                <p class="text-gray-600">Receive a digital certificate to showcase your achievement.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-secondary/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-users text-secondary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Community Access</h3>
+                <p class="text-gray-600">Join our community of learners for ongoing practice and support.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-accent/10 p-3 rounded-lg mr-4">
+                <i class="fas fa-bullhorn text-accent text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl mb-2">Presentation Skills</h3>
+                <p class="text-gray-600">Deliver presentations and participate in discussions confidently.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enrollment Section -->
+  <section id="enroll" class="py-16 gradient-primary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium mb-4 inline-block">Limited Enrollment</span>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Start Your English Journey Today</h2>
+      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+        Join our next cohort and transform your English skills in just 45 days.
+      </p>
+      
+      <div class="bg-white text-dark rounded-2xl p-8 max-w-2xl mx-auto mb-8">
+        <div class="text-center mb-8">
+          <h3 class="text-2xl font-bold mb-2">Complete English Fluency Course</h3>
+          <p class="text-gray-600">45-day comprehensive program</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div class="text-center p-6 border border-gray-200 rounded-xl">
+            <div class="text-3xl font-bold text-primary mb-2">4</div>
+            <p class="font-medium">Modules</p>
+          </div>
+          <div class="text-center p-6 border border-gray-200 rounded-xl">
+            <div class="text-3xl font-bold text-secondary mb-2">45</div>
+            <p class="font-medium">Days</p>
+          </div>
+          <div class="text-center p-6 border border-gray-200 rounded-xl">
+            <div class="text-3xl font-bold text-accent mb-2">45</div>
+            <p class="font-medium">Lessons</p>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h4 class="font-bold text-lg mb-4 text-center">What's Included:</h4>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>45 daily video lessons</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>Weekly live practice sessions</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>Interactive exercises</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>Progress tracking dashboard</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>Community access</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-check text-primary mr-3"></i>
+              <span>Completion certificate</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <div class="text-4xl font-bold text-primary mb-2">$199</div>
+          <p class="text-gray-600 mb-6">One-time payment • Lifetime access</p>
+          <button onclick="openEnrollmentModal()" class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition hover-lift">
+            <i class="fas fa-lock mr-2"></i>Enroll Now
+          </button>
+          <p class="text-sm text-gray-500 mt-4">7-day money-back guarantee</p>
+        </div>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <div class="flex items-center">
+          <i class="fas fa-shield-alt text-xl mr-3"></i>
+          <span>Secure payment</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-clock text-xl mr-3"></i>
+          <span>Lifetime access</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-certificate text-xl mr-3"></i>
+          <span>Certificate included</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section with Formspree -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-6 text-dark">Get in Touch</h3>
+      <p class="text-gray-600 mb-8 text-lg">Have questions about the course? We're here to help.</p>
+      
+      <div class="bg-gray-50 p-8 rounded-2xl shadow-sm">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Contact Form with Formspree -->
+          <div>
+            <h4 class="text-xl font-semibold mb-6 text-left text-dark">Send us a Message</h4>
+            <form action="https://formspree.io/f/xkobaoll" method="POST">
+              <div class="space-y-4">
+                <input type="text" name="name" placeholder="Your Name" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" required />
+                <input type="email" name="email" placeholder="Your Email" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" required />
+                <input type="tel" name="phone" placeholder="Your Phone Number" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                <select name="interest" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                  <option value="">What would you like to know?</option>
+                  <option value="course-details">Course Details</option>
+                  <option value="pricing">Pricing & Payment</option>
+                  <option value="schedule">Course Schedule</option>
+                  <option value="certificate">Certificate Information</option>
+                  <option value="other">Other Questions</option>
+                </select>
+                <textarea name="message" placeholder="Your message..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" rows="4"></textarea>
+                <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Contact Information -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-xl font-semibold mb-6 text-dark">Contact Information</h4>
+            <div class="space-y-6 text-left">
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-envelope text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-dark">Email</h5>
+                  <p class="text-gray-700">support@fluengo.com</p>
+                  <p class="text-sm text-gray-600">Typically reply within 24 hours</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-clock text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-dark">Response Time</h5>
+                  <p class="text-gray-700">Mon-Fri: 9 AM - 6 PM</p>
+                  <p class="text-sm text-gray-600">Weekends: 10 AM - 2 PM</p>
+                </div>
+              </div>
+              
+              <div class="pt-6 border-t border-gray-200">
+                <h5 class="font-semibold mb-3 text-dark">Before Contacting</h5>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary text-xs mr-2 mt-1"></i>
+                    <span>Check the course details above</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary text-xs mr-2 mt-1"></i>
+                    <span>Review the enrollment information</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary text-xs mr-2 mt-1"></i>
+                    <span>Have your questions ready</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="Gemini_Generated_Image_g960ggg960ggg960-Picsart-AiImageEnhancer.png" 
+                 alt="FluenGO Logo" 
+                 class="h-10 w-auto" />
+            <h2 class="text-xl font-bold">FLUENGO</h2>
+          </div>
+          <p class="text-gray-400 mb-6">Master English fluency in 45 days with our structured learning program.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-6">Quick Links</h3>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+            <li><a href="#course" class="text-gray-400 hover:text-white transition">Course Overview</a></li>
+            <li><a href="#modules" class="text-gray-400 hover:text-white transition">Modules</a></li>
+            <li><a href="#outcomes" class="text-gray-400 hover:text-white transition">Learning Outcomes</a></li>
+            <li><a href="#enroll" class="text-gray-400 hover:text-white transition">Enrollment</a></li>
           </ul>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-16">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-semibold mb-6">About Cordoba</h3>
-      <p class="text-gray-600 max-w-3xl mx-auto">Cordoba English Learning Center is a dedicated English academy focused on helping learners speak English with confidence and clarity. Our 2‑month structured course emphasizes practical speaking skills, clear grammar, useful vocabulary, and correct pronunciation, guiding students from understanding to confident communication in real-life situations.</p>
-    </div>
-  </section>
-
-  <!-- Courses Section -->
-  <section id="courses" class="bg-white py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-3xl font-semibold text-center mb-12">Our Courses</h3>
-      <div class="flex justify-center">
-        <div class="bg-slate-50 p-8 rounded-2xl shadow max-w-md text-center">
-          <h4 class="text-2xl font-semibold mb-4">Complete English Speaking Course</h4>
-          <p class="text-gray-600 mb-4">A structured multi-month English course designed to take learners from basic understanding to confident, fluent speaking. This program focuses on grammar, vocabulary, pronunciation, and real-life communication.</p>
-          <p class="font-medium text-blue-900">Duration: 2 Months</p>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-6">Contact Us</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-gray-400 mr-3"></i>
+              <span class="text-gray-400">hello@fluengo.com</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-globe text-gray-400 mr-3"></i>
+              <span class="text-gray-400">www.fluengo.com</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section id="why" class="py-16 bg-blue-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-3xl font-semibold text-center mb-12">Why Choose Cordoba?</h3>
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow text-center">Structured multi‑month learning plan</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Speaking‑focused teaching approach</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Experienced instructors</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Supportive learning environment</div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2024 FluenGO. All rights reserved.</p>
+        <p class="text-sm mt-2">Designed for English learners worldwide</p>
       </div>
     </div>
-  </section>
+  </footer>
 
- <!-- Contact Section -->
-<section id="contact" class="py-16">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h3 class="text-3xl font-semibold mb-6">Get in Touch</h3>
-    <p class="text-gray-600 mb-8">Start your English learning journey with us today.</p>
-    <div class="bg-white p-8 rounded-2xl shadow max-w-xl mx-auto">
-      <!-- Formspree Form -->
-      <form action="https://formspree.io/f/xqebklay" method="POST">
-        <div class="space-y-4">
-          <input type="text" name="name" placeholder="Your Name" class="w-full border p-3 rounded-lg" required />
-          <input type="email" name="email" placeholder="Your Email" class="w-full border p-3 rounded-lg" required />
-          <input type="tel" name="phone" placeholder="Your Phone Number" class="w-full border p-3 rounded-lg" />
-          <select name="course" class="w-full border p-3 rounded-lg">
-            <option value="">Select Course Interest</option>
-            <option value="beginner">Beginner English</option>
-            <option value="intermediate">Intermediate English</option>
-            <option value="advanced">Advanced English</option>
-            <option value="business">Business English</option>
+  <!-- Enrollment Modal -->
+  <div id="enrollment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeEnrollmentModal()">&times;</span>
+      <h3 class="text-2xl font-bold mb-6 text-center text-dark">Enroll in English Fluency Course</h3>
+      
+      <form id="enrollment-form" class="space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-2 text-gray-700">First Name</label>
+            <input type="text" id="enroll-fname" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary" placeholder="John" required>
+          </div>
+          <div>
+            <label class="block mb-2 text-gray-700">Last Name</label>
+            <input type="text" id="enroll-lname" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary" placeholder="Doe" required>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block mb-2 text-gray-700">Email Address</label>
+          <input type="email" id="enroll-email" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary" placeholder="john@example.com" required>
+        </div>
+        
+        <div>
+          <label class="block mb-2 text-gray-700">Phone Number</label>
+          <input type="tel" id="enroll-phone" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary" placeholder="+1 (234) 567-8900">
+        </div>
+        
+        <div>
+          <label class="block mb-2 text-gray-700">Current English Level</label>
+          <select id="enroll-level" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary">
+            <option value="">Select your level</option>
+            <option value="beginner">Beginner (Basic understanding)</option>
+            <option value="intermediate">Intermediate (Can have simple conversations)</option>
+            <option value="upper-intermediate">Upper Intermediate (Comfortable speaking)</option>
           </select>
-          <textarea name="message" placeholder="Your Message" class="w-full border p-3 rounded-lg" rows="4"></textarea>
-          <button type="submit" class="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
-            Send Message
-          </button>
+        </div>
+        
+        <div>
+          <label class="block mb-2 text-gray-700">Preferred Learning Time</label>
+          <select id="enroll-time" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary">
+            <option value="">Select preferred time</option>
+            <option value="morning">Morning (7 AM - 12 PM)</option>
+            <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+            <option value="evening">Evening (5 PM - 10 PM)</option>
+            <option value="flexible">Flexible (Any time)</option>
+          </select>
+        </div>
+        
+        <label class="flex items-start text-gray-700">
+          <input type="checkbox" class="mr-2 mt-1" required>
+          <span class="text-sm">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a></span>
+        </label>
+        
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Total Amount</span>
+            <span class="text-2xl font-bold text-primary">$199</span>
+          </div>
+          <p class="text-sm text-gray-600">One-time payment • Lifetime access • 7-day money-back guarantee</p>
+        </div>
+        
+        <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-lg font-bold hover:bg-blue-700 transition">
+          <i class="fas fa-lock mr-2"></i>Complete Enrollment
+        </button>
+        
+        <div class="text-center">
+          <p class="text-sm text-gray-500">Secure payment processed by Stripe</p>
         </div>
       </form>
-      
-      <!-- Alternative Contact Info -->
-      <div class="mt-8 pt-8 border-t">
-        <h4 class="font-semibold mb-4">Or contact us directly:</h4>
-        <p class="text-gray-600">📧 Email: sohaibtanoliatd@gmail.com.com</p>
-        <p class="text-gray-600">📞 Phone: +92 3199625641</p>
-        <p class="text-gray-600">📍 Address: International School of Cordoba, Jhangi Syedan, Abbottabad</p>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="modal">
+    <div class="modal-content">
+      <div class="text-center py-8">
+        <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-check text-green-600 text-3xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4 text-dark">Enrollment Successful!</h3>
+        <p class="text-gray-600 mb-6">Welcome to FluenGO! Check your email for course access details.</p>
+        <button onclick="closeSuccessModal()" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+          Start Learning
+        </button>
       </div>
     </div>
   </div>
-</section>
+
+  <!-- JavaScript -->
+  <script>
+    // Enrollment Modal
+    function openEnrollmentModal() {
+      document.getElementById('enrollment-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEnrollmentModal() {
+      document.getElementById('enrollment-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function openSuccessModal() {
+      closeEnrollmentModal();
+      document.getElementById('success-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('success-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Enrollment Form Submission
+    document.getElementById('enrollment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const fname = document.getElementById('enroll-fname').value;
+      const email = document.getElementById('enroll-email').value;
+      
+      // In a real implementation, you would:
+      // 1. Send data to your backend
+      // 2. Process payment
+      // 3. Create user account
+      // 4. Send confirmation email
+      
+      // For demo purposes, show success modal
+      openSuccessModal();
+      
+      // Reset form
+      this.reset();
+    });
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    };
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+          modal.style.display = 'none';
+        });
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
